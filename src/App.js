@@ -6,9 +6,16 @@ import "./components/css/form.css";
 import "./components/css/list.css";
 import "./components/css/header.css";
 import "./components/css/listgames.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 
 import { useState } from "react";
-const ROUTE = "https://jsonplaceholder.typicode.com/albums";
 
 export default function App() {
   const [gameExperiences, setGameExperiences] = useState([]);
@@ -67,23 +74,45 @@ export default function App() {
       console.error("Experience not found");
     }
   }
-  return (
-    <div className="App">
-      <div className="form-header">
-        <h1>GameShare</h1>
-        <h2>Play Games, Share experiences.</h2>
+
+  function PageForm() {
+    return (
+      <div className="App">
+        <div className="form-header">
+          <h1>GameShare</h1>
+          <h2>Play Games, Share experiences.</h2>
+        </div>
+        <GameExperienceForm
+          handleSave={saveGameExperience}
+          gameExperience={gameExperience}
+        />
+        <br></br>
+        <ListGameExperiences
+          gameExperiences={gameExperiences}
+          handleDelete={removeGameExperience}
+          handleEdit={editHandler}
+        />
       </div>
-      <GameExperienceForm
-        handleSave={saveGameExperience}
-        gameExperience={gameExperience}
-      />
-      <br></br>
-      <ListGameExperiences
-        gameExperiences={gameExperiences}
-        handleDelete={removeGameExperience}
-        handleEdit={editHandler}
-      />
-      <ListGames />
-    </div>
+    );
+  }
+
+  function PageAPI() {
+    return (
+      <div className="App">
+        <div className="form-header">
+          <h1>GameShare</h1>
+          <h2>Play Games, Share experiences.</h2>
+        </div>
+        <ListGames />
+      </div>
+    );
+  }
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PageForm />} />
+        <Route path="pageAPI" element={<PageAPI />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
