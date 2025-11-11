@@ -51,12 +51,21 @@ export default function App() {
     newGameExperiences[index].rating = rating;
     setGameExperiences(newGameExperiences);
   }
+  function editHandler(id) {
+    const gameExperience = getGameExperience(id);
 
+    if (gameExperience) {
+      setGameExperience(gameExperience);
+    } else {
+      console.error("Experience not found");
+    }
+  }
   return (
     <div className="App">
-      <h1>GameShare</h1>
-      <h2>Play Games</h2>
-      <h2>Share experiences.</h2>
+      <div className="form-header">
+        <h1>GameShare</h1>
+        <h2>Play Games, Share experiences.</h2>
+      </div>
       <GameExperienceForm
         handleSave={saveGameExperience}
         gameExperience={gameExperience}
@@ -65,7 +74,7 @@ export default function App() {
       <ListGameExperiences
         gameExperiences={gameExperiences}
         handleDelete={removeGameExperience}
-        handleEdit={console.log("edit")}
+        handleEdit={editHandler}
       />
     </div>
   );

@@ -2,7 +2,12 @@ body {
   font-family: sans-serif;
   font-size: 16px;
 }
-
+.form-header {
+  text-align: center;
+  gap: 0;
+  justify-content: center; /* Horizontally centers content */
+  align-items: center;
+}
 .card-form {
   display: flex;
   flex-direction: column;
