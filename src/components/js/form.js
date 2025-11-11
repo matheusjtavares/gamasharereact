@@ -80,16 +80,21 @@ function FormTextField({
   onChange,
 }) {
   return (
-    <input
-      id={id}
-      name={name}
-      type="text"
-      placeholder={placeholderText}
-      maxLength={maxLength}
-      minLength={minLength}
-      value={value}
-      onChange={onChange}
-    ></input>
+    <>
+      <div className="input-group">
+        <label htmlFor={id}> {name}</label>
+        <input
+          id={id}
+          name={name}
+          type="text"
+          placeholder={placeholderText}
+          maxLength={maxLength}
+          minLength={minLength}
+          value={value}
+          onChange={onChange}
+        ></input>
+      </div>
+    </>
   );
 }
 
@@ -103,15 +108,20 @@ function FormNumberField({
   onChange,
 }) {
   return (
-    <input
-      id={id}
-      name={name}
-      type="number"
-      placeholder={placeholderText}
-      maxLength={maxValue}
-      minLength={minValue}
-      value={value}
-      onChange={onChange}
-    ></input>
+    <>
+      <div className="input-group">
+        <label htmlFor={id}> {name}</label>
+        <input
+          id={id}
+          name={name}
+          type="number"
+          placeholder={placeholderText}
+          maxLength={maxValue}
+          minLength={minValue}
+          value={value}
+          onChange={onChange}
+        ></input>
+      </div>
+    </>
   );
 }

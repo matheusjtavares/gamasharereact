@@ -1,0 +1,92 @@
+/* --- List container --- */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- Each game experience item --- */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 0.8rem;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Game title and rating --- */
+.item-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.item-title span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0077ff;
+}
+
+/* --- Action buttons container --- */
+.item-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+/* --- Icon-style buttons --- */
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+/* --- Edit button --- */
+.btn-edit {
+  background-color: #0077ff;
+}
+
+.btn-edit:hover {
+  background-color: #005fd4;
+  transform: translateY(-1px);
+}
+
+/* --- Delete button --- */
+.btn-remove {
+  background-color: #e74c3c;
+}
+
+.btn-remove:hover {
+  background-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* --- Empty state (optional) --- */
+.list:empty::after {
+  content: "Add your First experience";
+  display: block;
+  text-align: center;
+  color: #777;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}

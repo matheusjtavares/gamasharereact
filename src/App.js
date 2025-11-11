@@ -1,6 +1,10 @@
-import { GameExperienceForm } from "./components/form";
-import { ListGameExperiences } from "./components/list";
+import { GameExperienceForm } from "./components/js/form";
+import { ListGameExperiences } from "./components/js/list";
 import "./styles.css";
+import "./components/css/form.css";
+import "./components/css/list.css";
+import "./components/css/header.css";
+
 import { useState } from "react";
 
 export default function App() {

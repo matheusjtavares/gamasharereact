@@ -1,0 +1,90 @@
+/* --- General form styling --- */
+.card-form {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  max-width: 400px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* --- Input groups --- */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+  text-transform: capitalize;
+}
+
+/* --- Input fields --- */
+.input-group input {
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid #d4d4d4;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Focus & hover states */
+.input-group input:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.15);
+}
+
+/* --- Submit button --- */
+.btn {
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.btn:hover {
+  background-color: #005fd4;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* --- Optional: subtle animation on load --- */
+.card-form {
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 480px) {
+  .card-form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+}

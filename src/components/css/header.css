@@ -1,0 +1,47 @@
+/* --- Header container --- */
+.form-header {
+  text-align: center;
+  margin: 3rem auto 2rem auto;
+  padding: 1.5rem 1rem;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  color: #222;
+}
+
+/* --- Main title --- */
+.form-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #0077ff;
+  margin-bottom: 0.4rem;
+  position: relative;
+}
+
+/* Optional subtle underline accent */
+.form-header h1::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #0077ff, #00c4ff);
+  border-radius: 2px;
+  margin: 0.4rem auto 0;
+}
+
+/* --- Subtitle --- */
+.form-header h2 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #555;
+  margin-top: 0.6rem;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 480px) {
+  .form-header h1 {
+    font-size: 1.8rem;
+  }
+  .form-header h2 {
+    font-size: 1rem;
+  }
+}
