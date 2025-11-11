@@ -1,11 +1,14 @@
 import { GameExperienceForm } from "./components/js/form";
 import { ListGameExperiences } from "./components/js/list";
+import { ListGames, ListToggler } from "./components/js/listgames";
 import "./styles.css";
 import "./components/css/form.css";
 import "./components/css/list.css";
 import "./components/css/header.css";
+import "./components/css/listgames.css";
 
 import { useState } from "react";
+const ROUTE = "https://jsonplaceholder.typicode.com/albums";
 
 export default function App() {
   const [gameExperiences, setGameExperiences] = useState([]);
@@ -80,6 +83,7 @@ export default function App() {
         handleDelete={removeGameExperience}
         handleEdit={editHandler}
       />
+      <ListGames />
     </div>
   );
 }
