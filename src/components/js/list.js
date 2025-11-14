@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { GamesController } from "../gamescontroller";
 export function ListGameExperiences({
   gameExperiences = [],
   handleDelete,
@@ -11,6 +11,7 @@ export function ListGameExperiences({
         <Item
           key={gameExperience.id}
           {...gameExperience}
+          img_src={gameExperience.img_src}
           handleDelete={handleDelete}
           handleEdit={handleEdit}
         />
@@ -19,7 +20,14 @@ export function ListGameExperiences({
   );
 }
 
-export function Item({ id, gameTitle, rating, handleDelete, handleEdit }) {
+export function Item({
+  id,
+  gameTitle,
+  rating,
+  img_src,
+  handleDelete,
+  handleEdit,
+}) {
   function onDelete() {
     handleDelete(id);
   }
@@ -27,9 +35,9 @@ export function Item({ id, gameTitle, rating, handleDelete, handleEdit }) {
   function onEdit() {
     handleEdit(id);
   }
-
   return (
     <div className="item">
+      <img src={img_src} alt="" width="80" height="60"></img>
       <div className="item-title">
         {gameTitle} <span>({rating})</span>{" "}
       </div>

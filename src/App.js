@@ -1,6 +1,7 @@
 import { GameExperienceForm } from "./components/js/form";
 import { ListGameExperiences } from "./components/js/list";
 import { ListGames, ListToggler } from "./components/js/listgames";
+import { GamesController } from "./components/gamescontroller";
 import "./styles.css";
 import "./components/css/form.css";
 import "./components/css/list.css";
@@ -23,13 +24,14 @@ export default function App() {
     id: undefined,
     gameTitle: "",
     rating: "",
+    img_src: "",
   });
 
   function getGameExperience(id) {
     return gameExperiences.find((gameExperience) => gameExperience.id === id);
   }
 
-  function saveGameExperience({ id, gameTitle, rating }) {
+  async function saveGameExperience({ id, gameTitle, rating, img_src }) {
     if (id && getGameExperience(id)) {
       updateGameExperience({ id, gameTitle, rating });
     } else {
@@ -39,6 +41,7 @@ export default function App() {
           id: Date.now(),
           gameTitle,
           rating,
+          img_src: await GetGameImageFromName({ gameTitle }).catch(() => ""),
         },
       ]);
     }
@@ -46,6 +49,7 @@ export default function App() {
       id: undefined,
       gameTitle: "",
       rating: "",
+      img_src: undefined,
     });
   }
 
@@ -56,13 +60,16 @@ export default function App() {
     setGameExperiences(newGameExperiences);
   }
 
-  function updateGameExperience({ id, gameTitle, rating }) {
+  async function updateGameExperience({ id, gameTitle, rating }) {
     const newGameExperiences = [...gameExperiences];
     const index = newGameExperiences.findIndex(
       (gameExperience) => gameExperience.id === id
     );
     newGameExperiences[index].gameTitle = gameTitle;
     newGameExperiences[index].rating = rating;
+    newGameExperiences[index].img_src = await GetGameImageFromName({
+      gameTitle,
+    }).catch(() => "");
     setGameExperiences(newGameExperiences);
   }
   function editHandler(id) {
@@ -73,6 +80,23 @@ export default function App() {
     } else {
       console.error("Experience not found");
     }
+  }
+  async function GetGameImageFromName(gameTitle) {
+    console.log("GetGameImageFromName:", gameTitle);
+    // Get ID
+    const idResponse = await GamesController.GetGameId(gameTitle);
+    console.log(idResponse);
+    const idData = idResponse?.data;
+    if (!idData || idData.count === 0) return null;
+    const selected_id = idData.games[0].id;
+    // Get image data
+    const imgResponse = await GamesController.GetGameImage(selected_id);
+    const imgData = imgResponse?.data;
+    if (!imgData || !imgData.base_url || !imgData.images) return null;
+    const base = imgData.base_url.small;
+    const image = imgData.images[selected_id]?.filename;
+    if (!base || !image) return null;
+    return base + image;
   }
 
   function PageForm() {
@@ -91,6 +115,7 @@ export default function App() {
           gameExperiences={gameExperiences}
           handleDelete={removeGameExperience}
           handleEdit={editHandler}
+          handlePullImg={GetGameImageFromName}
         />
       </div>
     );
